@@ -23,13 +23,6 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto findById(Long id) throws Exception {
-        Post getPost = postRepository.findById(id).orElseThrow(() -> new Exception("Post detail not found"));
-        PostDto postDto = new PostDto();
-        return postDto.toPostDto(getPost);
-    }
-
-    @Override
     public List<PostDto> findAll() {
         List<PostDto> postDtoList = new ArrayList<>();
         postRepository.findAll().stream().forEach(post -> {
@@ -50,27 +43,6 @@ public class PostServiceImpl implements PostService {
             postDtoList.add(postDto);
         });
         return postDtoList;
-    }
-
-    @Override
-    public PostDto update(Long id, PostDto req) throws Exception {
-            Post getPost = postRepository.findById(id).orElseThrow(() -> new Exception("Post detail not found"));
-            getPost.setSuburbName(req.getSuburbName());
-            getPost.setPostcode(req.getPostcode());
-            postRepository.save(getPost);
-            return new PostDto().toPostDto(getPost);
-
-    }
-
-    @Override
-    public String remove(Long id) {
-        try {
-            Post deletePost = postRepository.findById(id).orElseThrow(() -> new Exception("Post detail not found"));
-            postRepository.delete(deletePost);
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-        return "Delete successfully";
     }
 
 }

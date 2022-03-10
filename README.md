@@ -5,6 +5,7 @@
 This demo project requires:
 * JDK 11 or above.
 * Maven installation
+* Server port 8080 available.
 
 ### Steps
 1. Create database
