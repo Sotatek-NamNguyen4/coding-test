@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping("api/v1/")
+@RestController
+@RequestMapping("api/v1/")
 public class PostController {
 
-//    @Autowired
+    @Autowired
     private PostService postService;
 
-//    @PostMapping(path = "/post")
+    @PostMapping(path = "/post")
     public ResponseEntity<PostDto> addNewPost (@RequestBody PostDto req) {
         PostDto res = postService.save(req);
         return new ResponseEntity<PostDto>(res, HttpStatus.OK);
     }
 
-//    @GetMapping(path = "/post")
+    @GetMapping(path = "/post-detail")
     public ResponseEntity<PostDto> getPost (@RequestBody Long id) throws Exception {
         PostDto res = postService.findById(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-//    @GetMapping(path = "/post")
-    public ResponseEntity<List<PostDto>> getAllPost (@RequestBody List<Long> postcodes) {
+    @GetMapping(path = "/post")
+    public ResponseEntity<List<PostDto>> getAllPost (@RequestBody(required = false) List<Long> postcodes) {
         List<PostDto> res;
-        if (postcodes.size() != 0) {
+        if (postcodes != null && postcodes.size() != 0) {
             res = postService.findAllByPostcode(postcodes);
         } else {
             res = postService.findAll();
@@ -39,13 +39,13 @@ public class PostController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-//    @PutMapping(path = "/post")
+    @PutMapping(path = "/post")
     public ResponseEntity<PostDto> updatePost (@RequestBody Long id, @RequestBody PostDto req) throws Exception {
         PostDto res = postService.update(id, req);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-//    @DeleteMapping(path = "/post")
+    @DeleteMapping(path = "/post")
     public ResponseEntity<?> deletePost (@RequestBody Long id) {
         String res = postService.remove(id);
         return new ResponseEntity<>(res, HttpStatus.OK);
