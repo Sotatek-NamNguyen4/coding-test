@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> findAllByPostcode(List<Long> postcodes) {
-        List<Post> postList = postRepository.findByPostcodeInOrderBySuburbName(postcodes);
+        List<Post> postList = postRepository.findByPostcodeInOrderBySuburbNameAsc(postcodes);
         List<PostDto> postDtoList = new ArrayList<>();
         postList.stream().forEach(post -> {
             PostDto postDto = new PostDto();

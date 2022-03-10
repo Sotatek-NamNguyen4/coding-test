@@ -1,9 +1,0 @@
-DROP DATABASE IF EXISTS post;
-CREATE DATABASE post;
-USE post;
-
-CREATE TABLE post (
-	id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    suburb_name VARCHAR(50),
-    postcode BIGINT
-);
